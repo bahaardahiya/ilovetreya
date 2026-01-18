@@ -3,21 +3,56 @@ const messages = [
   "We have officially not been in a situationship for 1 whole month now!!!",
   "Let's take a moment to thank Hinge",
   "Because I couldn't get you actual flowers today 🌸",
-  "Reminder: I love you bhondz."
+  "Reminder: I love you bhondz"
 ];
 
+let msgIndex = 0;
+
+// DOM hooks (match your current IDs)
 const modal = document.getElementById("messageModal");
 const openBtn = document.getElementById("openMessage");
 const closeBackdrop = document.getElementById("closeMessage");
 const closeX = document.getElementById("xClose");
 const closeOk = document.getElementById("okClose");
 
-openBtn.addEventListener("click", () => {
-  modal.classList.add("show");
+// Where the message should render inside the modal.
+// IMPORTANT: In your index.html modal, add an element with id="messageText"
+// (example: <p id="messageText"></p>)
+const messageTextEl = document.getElementById("messageText");
+
+// Safety: if the element doesn't exist, fail gracefully
+function setMessage(text) {
+  if (!messageTextEl) return;
+  messageTextEl.textContent = text;
+}
+
+function openModalWithNextMessage() {
+  // Set next message
+  setMessage(messages[msgIndex]);
+
+  // Advance index (cycle)
+  msgIndex = (msgIndex + 1) % messages.length;
+
+  // Open modal
+  modal.classList.add("show"); // your CSS currently uses "show"
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function closeModal() {
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+// Click → show next message
+if (openBtn) openBtn.addEventListener("click", openModalWithNextMessage);
+
+// Close controls
+[closeBackdrop, closeX, closeOk].forEach((el) => {
+  if (!el) return;
+  el.addEventListener("click", closeModal);
 });
 
-[closeBackdrop, closeX, closeOk].forEach(el => {
-  el.addEventListener("click", () => {
-    modal.classList.remove("show");
-  });
+// ESC closes
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
 });
