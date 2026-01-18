@@ -3,64 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>ilovetreya</title>
+    <title>ilovebhondz</title>
+
+    <!-- Soft, modern font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <main class="card" aria-label="Birthday note">
-      <header class="top">
-        <div class="title-block">
-          <div class="badge">From London to Bangalore</div>
-          <h1>Happy Anniversary, <span class="name">Bhondz</span>!</h1>
+    <!-- subtle floating petals/hearts -->
+    <div class="floaters" aria-hidden="true"></div>
 
-          <p class="note">
-            Just a small corner of the internet to remind you you’re loved when I can't tell you (beccause I'm probably asleep)
-            I love you so much bhondz.
+    <main class="shell">
+      <section class="hero-card" aria-label="Love page">
+        <div class="hero-top">
+          <div class="chips">
+            <span class="chip">London → Bangalore</span>
+            <span class="chip chip-blue">blue + yellow only</span>
+          </div>
+
+          <h1 class="headline">
+            Happy Anniversary,<br />
+            <span class="accent">Bhondz</span>
+          </h1>
+
+          <p class="subcopy">
+            Just a small corner of the internet to remind you you’re loved (especially when I’m asleep).
+            I love you so much, bhondz.
           </p>
 
-          <button id="btn" class="btn" type="button">
-            Tap for a little message
-          </button>
-          <p id="surprise" class="surprise" role="status" aria-live="polite"></p>
+          <div class="cta-row">
+            <button id="btn" class="btn" type="button">Tap for a little message</button>
+            <span id="surprise" class="surprise" role="status" aria-live="polite"></span>
+          </div>
         </div>
 
-        <aside class="globe-wrap" aria-label="Distance and globe">
-          <div class="globe-title">We’re far. Still close.</div>
+        <div class="right-rail">
+          <div class="mini-card">
+            <div class="mini-title">We’re far. Still close.</div>
 
-          <div
-            id="globe"
-            class="globe"
-            role="img"
-            aria-label="Spinnable globe with London and Bangalore pins"
-          >
-            <div class="globe-shine"></div>
-            <div class="globe-lines"></div>
-            <div id="pin-london" class="pin" title="London"></div>
-            <div id="pin-blr" class="pin" title="Bangalore"></div>
-          </div>
-
-          <div class="distance-meta">
-            <div class="places">
-              <span>London</span>
-              <span class="sep">↔</span>
-              <span>Bangalore</span>
+            <div id="globe" class="globe" role="img" aria-label="Spinnable globe">
+              <div class="globe-shine"></div>
+              <div class="globe-lines"></div>
+              <div id="pin-london" class="pin" title="London"></div>
+              <div id="pin-blr" class="pin" title="Bangalore"></div>
             </div>
-            <div id="km" class="km"></div>
-            <div class="hint">Drag the globe to spin</div>
+
+            <div class="meta">
+              <div class="meta-row">
+                <span>London</span><span class="sep">↔</span><span>Bangalore</span>
+              </div>
+              <div id="km" class="km"></div>
+              <div class="hint">Drag the globe to spin</div>
+            </div>
           </div>
-        </aside>
-      </header>
 
-      <section class="garden" id="garden" aria-label="Click to grow flowers">
-        <div class="garden-hint">
-          Click anywhere in this box to grow flowers.
+
+        <div class="garden-wrap">
+          <div class="garden-title">Grow me a garden</div>
+          <div class="garden-sub">Click anywhere in the box to bloom flowers.</div>
+          <div class="garden" id="garden" aria-label="Click to grow flowers"></div>
         </div>
-      </section>
 
-      <footer class="footer">
-        <span class="tiny">Made with love and a little blue-yellow chaos.</span>
-      </footer>
+        <footer class="footer">
+          yours,
+          bhondu
+        </footer>
+      </section>
     </main>
 
     <script src="script.js"></script>
