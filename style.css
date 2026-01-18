@@ -1,149 +1,221 @@
-:root {
-  --yellow: #FFD84D;
-  --navy: #0B1D39;
+:root{
+  --bg: #FFD84D;     /* yellow */
+  --navy: #0B1D39;   /* navy text */
+  --card: rgba(255,255,255,0.55);
+  --line: rgba(11, 29, 57, 0.18);
+  --shadow: 0 14px 34px rgba(11,29,57,0.18);
+  --r: 22px;
 }
 
-* {
-  box-sizing: border-box;
-}
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
 
-body {
+body{
   margin: 0;
-  background: var(--yellow);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
   color: var(--navy);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   overflow-x: hidden;
 }
 
-/* Layout */
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 50px 20px 80px;
+/* Page layout */
+.wrap{
+  position: relative;
+  z-index: 2;
+  width: min(980px, calc(100% - 44px));
+  margin: 0 auto;
+  padding: 54px 0 78px;
 }
 
-h1 {
-  font-size: clamp(42px, 6vw, 68px);
-  margin-bottom: 40px;
-}
-
-h2 {
-  margin-top: 0;
+.hero h1{
+  margin: 0 0 26px 0;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
 }
 
 /* Cards */
-.card {
-  background: rgba(255,255,255,0.45);
-  border-radius: 22px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 10px 30px rgba(11,29,57,0.15);
+.card{
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 18px 18px;
+  margin: 18px 0;
+  backdrop-filter: blur(10px);
 }
 
-.card.small {
+.card h2{
+  margin: 0 0 10px 0;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+
+.card-row{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 14px;
 }
 
-/* Button */
-button {
+/* Buttons */
+.btn{
   background: var(--navy);
-  color: white;
-  border: none;
+  color: #fff;
+  border: 0;
   border-radius: 999px;
   padding: 10px 18px;
-  cursor: pointer;
   font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(11,29,57,0.22);
 }
+.btn:active{ transform: translateY(1px); }
 
 /* Digital garden */
-.garden {
+.garden{
   display: grid;
-  gap: 15px;
-  margin-top: 15px;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  margin-top: 10px;
 }
 
-.seed {
-  background: rgba(255,255,255,0.6);
-  border-radius: 16px;
-  padding: 15px;
+.seed{
+  grid-column: span 12;
+  border: 1px solid rgba(11,29,57,0.14);
+  background: rgba(255,255,255,0.62);
+  border-radius: 18px;
+  padding: 14px 14px;
 }
 
-/* Map */
-.map-wrapper {
+.seed h3{
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+.seed p{
+  margin: 0;
+  line-height: 1.45;
+  font-size: 15px;
+}
+
+/* Responsive garden */
+@media (min-width: 760px){
+  .seed{ grid-column: span 4; }
+}
+
+/* Map box */
+.mapShell{
   width: 100%;
-  height: 300px;
+  aspect-ratio: 16 / 9;
   border-radius: 18px;
   overflow: hidden;
+  border: 1px solid rgba(11,29,57,0.14);
+  background: rgba(255,255,255,0.4);
 }
 
-.map-wrapper iframe {
+.mapShell iframe{
   width: 100%;
   height: 100%;
-  border: none;
+  border: 0;
 }
 
 /* Modal */
-.modal {
+.modal{
   position: fixed;
   inset: 0;
   display: none;
-  align-items: center;
-  justify-content: center;
+  z-index: 50;
 }
 
-.modal.show {
-  display: flex;
+.modal.isOpen{
+  display: grid;
+  place-items: center;
 }
 
-.modal-backdrop {
+.modalBackdrop{
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(11,29,57,0.45);
 }
 
-.modal-box {
+.modalPanel{
   position: relative;
-  background: #fff;
-  padding: 30px;
-  max-width: 420px;
-  border-radius: 20px;
-  z-index: 2;
-  text-align: center;
+  width: min(520px, calc(100% - 44px));
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 22px 60px rgba(11,29,57,0.35);
+  padding: 16px;
 }
 
-.modal-box p {
-  margin-bottom: 20px;
+.modalTop{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
-.close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  background: none;
+.iconBtn{
+  background: transparent;
+  border: 0;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
   color: var(--navy);
-  font-size: 22px;
+  padding: 6px 10px;
+  border-radius: 12px;
+}
+.iconBtn:hover{
+  background: rgba(11,29,57,0.06);
 }
 
-/* Flowers */
-.flowers span {
+.modalBody{
+  padding: 10px 8px 6px 8px;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.modalBottom{
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 8px 4px 8px;
+}
+
+/* Flowers background */
+.flowers{
   position: fixed;
-  top: -10%;
-  font-size: 20px;
-  opacity: 0.25;
-  animation: float 20s linear infinite;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.flowers span:nth-child(n) {
-  left: calc(10% * var(--i));
+.flower{
+  position: absolute;
+  top: -12vh;
+  color: rgba(11,29,57,0.22);
+  filter: blur(0.2px);
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-.flowers span {
-  left: calc(100% * random());
-}
+/* Each flower: position + size + speed */
+.f1{ left: 6%;  font-size: 18px; animation-duration: 18s; animation-delay: -2s; }
+.f2{ left: 14%; font-size: 22px; animation-duration: 22s; animation-delay: -9s; }
+.f3{ left: 25%; font-size: 16px; animation-duration: 19s; animation-delay: -6s; }
+.f4{ left: 33%; font-size: 26px; animation-duration: 24s; animation-delay: -12s; }
+.f5{ left: 44%; font-size: 20px; animation-duration: 20s; animation-delay: -4s; }
+.f6{ left: 53%; font-size: 24px; animation-duration: 26s; animation-delay: -15s; }
+.f7{ left: 62%; font-size: 17px; animation-duration: 21s; animation-delay: -8s; }
+.f8{ left: 71%; font-size: 28px; animation-duration: 27s; animation-delay: -18s; }
+.f9{ left: 79%; font-size: 19px; animation-duration: 23s; animation-delay: -11s; }
+.f10{ left: 86%; font-size: 23px; animation-duration: 25s; animation-delay: -14s; }
+.f11{ left: 92%; font-size: 16px; animation-duration: 20s; animation-delay: -7s; }
+.f12{ left: 97%; font-size: 27px; animation-duration: 28s; animation-delay: -20s; }
 
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(120vh); }
+@keyframes fall{
+  0%   { transform: translateY(-12vh) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.22; }
+  100% { transform: translateY(112vh) rotate(360deg); opacity: 0.22; }
 }
