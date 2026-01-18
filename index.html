@@ -33,15 +33,17 @@
     </header>
 
     <!-- Lil message card -->
-    <section class="card card-row">
-      <div>
-        <h2>Click for a reminder </h2>
-      </div>
-      <div>
-        <!-- MUST match script.js: id="openMessage" -->
-        <button class="btn" id="openMessage" type="button">Click</button>
-      </div>
-    </section>
+    <section class="card">
+  <h2>Since 19th December 2025, 6:00 PM (UK)</h2>
+  <div class="timer">
+    <div class="tbox"><div class="tval" id="tDays">0</div><div class="tlab">days</div></div>
+    <div class="tbox"><div class="tval" id="tHours">00</div><div class="tlab">hours</div></div>
+    <div class="tbox"><div class="tval" id="tMins">00</div><div class="tlab">mins</div></div>
+    <div class="tbox"><div class="tval" id="tSecs">00</div><div class="tlab">secs</div></div>
+  </div>
+  <p class="timerLine">…and counting.</p>
+</section>
+
 
 
     <!-- Map embed -->
