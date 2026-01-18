@@ -12,7 +12,7 @@ const messageTextEl = document.getElementById("messageText");
 
 // DOM hooks (match your current IDs)
 const modal = document.getElementById("messageModal");
-const openBtn = document.getElementById("openMessage");
+const openBtn = document.getElementById("openMessage") || document.getElementById("openBtn");
 const closeBackdrop = document.getElementById("closeMessage");
 const closeX = document.getElementById("xClose");
 const closeOk = document.getElementById("okClose");
