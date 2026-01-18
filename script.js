@@ -44,24 +44,16 @@ const globe = document.getElementById("globe");
 const pinLondon = document.getElementById("pin-london");
 const pinBlr = document.getElementById("pin-blr");
 
-/*
-  We simulate a globe in 2D:
-  - Dragging changes "spinDeg"
-  - Each pin is placed based on relative longitude after spin
-  - Pins fade when on the far side (cos(relLon) < threshold)
-*/
 let spinDeg = 0;
 
 function placePin(pinEl, lat, lon) {
   if (!pinEl) return;
 
   const relLon = ((((lon - spinDeg) % 360) + 540) % 360) - 180; // -180..180
-  const facing = Math.cos((relLon * Math.PI) / 180); // 1 front, -1 back
+  const facing = Math.cos((relLon * Math.PI) / 180);
   const visible = facing > 0.05;
 
-  // x spans ~90% width inside globe
   const x = 50 + (relLon / 180) * 45; // percent
-  // y depends on latitude, squashed for nicer look
   const y = 50 - (lat / 90) * 28; // percent
 
   pinEl.style.left = `${x}%`;
@@ -71,8 +63,6 @@ function placePin(pinEl, lat, lon) {
 
 function renderGlobe() {
   if (!globe) return;
-
-  // Move the internal “lines” layer to imply rotation
   const px = (spinDeg / 360) * 160;
   globe.style.setProperty("--spin", `${px}px`);
 
@@ -82,7 +72,6 @@ function renderGlobe() {
 
 renderGlobe();
 
-// Drag handlers
 let dragging = false;
 let lastX = 0;
 
@@ -96,8 +85,6 @@ function onMove(e) {
   if (!dragging) return;
   const dx = e.clientX - lastX;
   lastX = e.clientX;
-
-  // sensitivity: px → degrees
   spinDeg = (spinDeg + dx * 0.65) % 360;
   renderGlobe();
 }
@@ -114,30 +101,26 @@ if (globe) {
   globe.addEventListener("mouseleave", onUp);
 }
 
-// ---------- Flowers Option C: click-to-grow in the garden ----------
+// ---------- Flowers: click-to-grow in the garden ----------
 const garden = document.getElementById("garden");
+const flowerSet = ["✿", "❀", "✾", "❁", "❃", "⚘", "🌼", "🌷", "🌸", "🪻"];
 
-// A mix of simple symbols + emojis
-const flowerSet = ["✿", "❀", "✾", "❁", "❃", "⚘", "🌸", "🌷", "🪻", "🌼"];
-
-// Blue + yellow-ish palette (to match the site)
+// Blue + yellow palette
 const flowerPalette = [
-  "rgba(30,107,214,0.92)",
-  "rgba(11,59,122,0.92)",
-  "rgba(125,183,255,0.92)",
-  "rgba(255,210,77,0.95)",
-  "rgba(255,230,128,0.95)"
+  "rgba(59,130,246,0.95)",
+  "rgba(11,59,122,0.95)",
+  "rgba(187,216,255,0.95)",
+  "rgba(255,210,77,0.98)",
+  "rgba(255,228,138,0.98)"
 ];
 
 function spawnFlower(x, y) {
   const f = document.createElement("div");
   f.className = "flower";
   f.textContent = flowerSet[Math.floor(Math.random() * flowerSet.length)];
+  f.style.color = flowerPalette[Math.floor(Math.random() * flowerPalette.length)];
 
-  const color = flowerPalette[Math.floor(Math.random() * flowerPalette.length)];
-  f.style.color = color;
-
-  const size = 22 + Math.random() * 30;
+  const size = 22 + Math.random() * 32;
   f.style.fontSize = `${size}px`;
 
   const rot = (Math.random() * 24 - 12).toFixed(1);
@@ -147,8 +130,6 @@ function spawnFlower(x, y) {
   f.style.top = `${y}px`;
 
   garden.appendChild(f);
-
-  // cleanup so it doesn't grow forever
   setTimeout(() => f.remove(), 9000);
 }
 
@@ -160,17 +141,40 @@ if (garden) {
 
     spawnFlower(x, y);
 
-    // occasional “bouquet burst”
-    if (Math.random() < 0.18) {
-      for (let i = 0; i < 5; i++) {
-        const ox = Math.random() * 70 - 35;
-        const oy = Math.random() * 40 - 20;
-        spawnFlower(x + ox, y + oy);
+    // occasional burst
+    if (Math.random() < 0.20) {
+      for (let i = 0; i < 6; i++) {
+        spawnFlower(x + (Math.random() * 80 - 40), y + (Math.random() * 50 - 25));
       }
     }
   });
 
-  // a tiny starter flower
   const r = garden.getBoundingClientRect();
-  spawnFlower(r.width * 0.72, r.height * 0.55);
+  spawnFlower(r.width * 0.70, r.height * 0.55);
 }
+
+// ---------- Floating decor (makes it feel less “corporate”) ----------
+const floaters = document.querySelector(".floaters");
+const icons = ["✿", "❀", "✾", "⚘", "♡", "✧"];
+
+function makeFloater() {
+  if (!floaters) return;
+  const el = document.createElement("div");
+  el.className = "floater";
+  el.textContent = icons[Math.floor(Math.random() * icons.length)];
+
+  const left = Math.random() * 100;
+  const size = 14 + Math.random() * 14;
+  const duration = 8 + Math.random() * 7;
+
+  el.style.left = `${left}vw`;
+  el.style.fontSize = `${size}px`;
+  el.style.animationDuration = `${duration}s`;
+  el.style.animationDelay = `${Math.random() * 2}s`;
+
+  floaters.appendChild(el);
+  setTimeout(() => el.remove(), duration * 1000);
+}
+
+for (let i = 0; i < 14; i++) makeFloater();
+setInterval(makeFloater, 700);
