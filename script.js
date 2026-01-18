@@ -1,61 +1,41 @@
-// ---------- Button surprise messages ----------
-const messages = [
-  "We have officially not been in a situationship for 1 whole month now!!!",
-  "Let's take a moment to thank Hinge",
-  "Because I couldn't get you actual flowers today 🌸",
-  "I love you"
-  "Thank you for tolerating all my bullshit, u da goat",
-  "You're a diva"
-];
+// Relationship timer (since 19 Dec 2025, 6:00 PM UK time)
 
-let msgIndex = 0;
-const messageTextEl = document.getElementById("messageText");
+// UK time in December is GMT (UTC+0), so we use an explicit UTC timestamp.
+// 19 Dec 2025 18:00:00 GMT == 2025-12-19T18:00:00Z
+const start = new Date("2025-12-19T18:00:00Z").getTime();
 
+const elDays = document.getElementById("tDays");
+const elHours = document.getElementById("tHours");
+const elMins = document.getElementById("tMins");
+const elSecs = document.getElementById("tSecs");
 
-// DOM hooks (match your current IDs)
-const modal = document.getElementById("messageModal");
-const openBtn = document.getElementById("openMessage") || document.getElementById("openBtn");
-const closeBackdrop = document.getElementById("closeMessage");
-const closeX = document.getElementById("xClose");
-const closeOk = document.getElementById("okClose");
-
-// Where the message should render inside the modal.
-// IMPORTANT: In your index.html modal, add an element with id="messageText"
-// (example: <p id="messageText"></p>)
-
-// Safety: if the element doesn't exist, fail gracefully
-function setMessage(text) {
-  if (!messageTextEl) return;
-  messageTextEl.textContent = text;
+function pad2(n) {
+  return String(n).padStart(2, "0");
 }
 
-function openModalWithNextMessage() {
-  // Set next message
-  setMessage(messages[msgIndex]);
+function tick() {
+  const now = Date.now();
+  let diff = now - start;
 
-  // Advance index (cycle)
-  msgIndex = (msgIndex + 1) % messages.length;
+  // If someone opens it before the start time, show 0s (no negative)
+  if (diff < 0) diff = 0;
 
-  // Open modal
-  modal.classList.add("show"); // your CSS currently uses "show"
-  modal.setAttribute("aria-hidden", "false");
+  const totalSeconds = Math.floor(diff / 1000);
+
+  const days = Math.floor(totalSeconds / (24 * 3600));
+  const rem1 = totalSeconds % (24 * 3600);
+
+  const hours = Math.floor(rem1 / 3600);
+  const rem2 = rem1 % 3600;
+
+  const mins = Math.floor(rem2 / 60);
+  const secs = rem2 % 60;
+
+  if (elDays) elDays.textContent = String(days);
+  if (elHours) elHours.textContent = pad2(hours);
+  if (elMins) elMins.textContent = pad2(mins);
+  if (elSecs) elSecs.textContent = pad2(secs);
 }
 
-function closeModal() {
-  modal.classList.remove("show");
-  modal.setAttribute("aria-hidden", "true");
-}
-
-// Click → show next message
-if (openBtn) openBtn.addEventListener("click", openModalWithNextMessage);
-
-// Close controls
-[closeBackdrop, closeX, closeOk].forEach((el) => {
-  if (!el) return;
-  el.addEventListener("click", closeModal);
-});
-
-// ESC closes
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
-});
+tick();
+setInterval(tick, 1000);
