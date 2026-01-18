@@ -3,30 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>I love Treya</title>
+    <title>iloveXXX</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <main class="card" aria-label="i love you">
-      <div class="flowers" aria-hidden="true">
-        <span>🌷</span><span>🌸</span><span>🌼</span><span>🪻</span><span>🌹</span>
-      </div>
+    <main class="card" aria-label="Birthday note">
+      <header class="top">
+        <div class="title-block">
+          <div class="badge">From London to Bangalore</div>
+          <h1>Happy Birthday, <span class="name">XXX</span>!</h1>
 
-      <h1>Happy Anniversary, Bhondz!</h1>
+          <p class="note">
+            I made you a tiny corner of the internet in your favourite colours.
+            I hope today feels warm, bright, and fully you.
+          </p>
 
-      <p class="note">
-        Just a small corner of the internet to tell you how much I love you.
-        I’m so grateful for you, thank you for making me smile everyday.
-      </p>
+          <button id="btn" class="btn" type="button">
+            Tap for a little message
+          </button>
+          <p id="surprise" class="surprise" role="status" aria-live="polite"></p>
+        </div>
 
-      <button id="btn" class="btn" type="button">
-        Tap for a little surprise
-      </button>
+        <aside class="globe-wrap" aria-label="Distance and globe">
+          <div class="globe-title">We’re far. Still close.</div>
 
-      <p id="surprise" class="surprise" role="status" aria-live="polite"></p>
+          <div
+            id="globe"
+            class="globe"
+            role="img"
+            aria-label="Spinnable globe with London and Bangalore pins"
+          >
+            <div class="globe-shine"></div>
+            <div class="globe-lines"></div>
+            <div id="pin-london" class="pin" title="London"></div>
+            <div id="pin-blr" class="pin" title="Bangalore"></div>
+          </div>
+
+          <div class="distance-meta">
+            <div class="places">
+              <span>London</span>
+              <span class="sep">↔</span>
+              <span>Bangalore</span>
+            </div>
+            <div id="km" class="km"></div>
+            <div class="hint">Drag the globe to spin</div>
+          </div>
+        </aside>
+      </header>
+
+      <section class="garden" id="garden" aria-label="Click to grow flowers">
+        <div class="garden-hint">
+          Click anywhere in this box to grow flowers.
+        </div>
+      </section>
 
       <footer class="footer">
-        <span class="tiny">Made with love.</span>
+        <span class="tiny">Made with love and a little blue-yellow chaos.</span>
       </footer>
     </main>
 
