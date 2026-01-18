@@ -3,8 +3,9 @@ const messages = [
   "We have officially not been in a situationship for 1 whole month now!!!",
   "Let's take a moment to thank Hinge",
   "Because I couldn't get you actual flowers today 🌸",
-  "Reminder: I love you"
-  "Thank you for tolerating all my bullshit, u da goat"
+  "I love you"
+  "Thank you for tolerating all my bullshit, u da goat",
+  "You're a diva"
 ];
 
 let msgIndex = 0;
