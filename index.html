@@ -1,57 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Anniversary Bhondz</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- IMPORTANT: your file is named style.css (per your screenshot), NOT styles.css -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
   <!-- Floating flowers background -->
   <div class="flowers" aria-hidden="true">
-    <span>✿</span><span>❀</span><span>✿</span><span>❀</span>
-    <span>✿</span><span>❀</span><span>✿</span><span>❀</span>
-    <span>✿</span><span>❀</span><span>✿</span><span>❀</span>
+    <span class="flower f1">✿</span>
+    <span class="flower f2">❀</span>
+    <span class="flower f3">✿</span>
+    <span class="flower f4">❀</span>
+    <span class="flower f5">✿</span>
+    <span class="flower f6">❀</span>
+    <span class="flower f7">✿</span>
+    <span class="flower f8">❀</span>
+    <span class="flower f9">✿</span>
+    <span class="flower f10">❀</span>
+    <span class="flower f11">✿</span>
+    <span class="flower f12">❀</span>
   </div>
 
-  <main class="container">
+  <main class="wrap">
+    <header class="hero">
+      <h1>Happy Anniversary Bhondz</h1>
+    </header>
 
-    <h1>Happy Anniversary Bhondz</h1>
-
-    <!-- Lil message -->
-    <section class="card small">
-      <h2>Click for a lil message</h2>
-      <button id="openMessage">Click</button>
-    </section>
-
-    <!-- Google Map -->
-    <section class="card">
-      <h2>Where it started</h2>
-      <div class="map-wrapper">
-        <!-- Replace ONLY the src with your pub's Google Maps embed link -->
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2909.91471004512!2d-0.14209802296133214!3d51.510881971814186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760557da56fd43%3A0x82513a207b651ff6!2sThe%20Starman!5e1!3m2!1sen!2suk!4v1768744891160!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">"
-        </iframe>
+    <!-- Lil message card -->
+    <section class="card card-row">
+      <div>
+        <h2>Click for a lil message</h2>
+      </div>
+      <div>
+        <!-- MUST match script.js: id="openMessage" -->
+        <button class="btn" id="openMessage" type="button">Click</button>
       </div>
     </section>
 
+
+    <!-- Map embed -->
+    <section class="card">
+      <h2>Where it started</h2>
+
+      <div class="mapShell">
+        <!-- Replace src with your pub's Google Maps "Embed a map" src -->
+        <iframe
+          title="First date pub map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2909.914710045118!2d-0.14209802296130672!3d51.510881971814186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760557da56fd43%3A0x82513a207b651ff6!2sThe%20Starman!5e1!3m2!1sen!2suk!4v1768750257822!5m2!1sen!2suk"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
   </main>
 
-  <!-- Modal -->
-  <div class="modal" id="messageModal">
-    <div class="modal-backdrop" id="closeMessage"></div>
-    <div class="modal-box">
-      <button class="close" id="xClose">×</button>
-      <p>
-        Happy anniversary!
-        You’re my favourite person :)
-      </p>
-      <button id="okClose">Okay</button>
+  <!-- Modal (IDs MUST match your script.js) -->
+  <div class="modal" id="messageModal" aria-hidden="true">
+    <!-- MUST match script.js: id="closeMessage" -->
+    <div class="modalBackdrop" id="closeMessage"></div>
+
+    <div class="modalPanel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modalTop">
+        <div class="modalTitle" id="modalTitle"></div>
+
+        <!-- MUST match script.js: id="xClose" -->
+        <button class="iconBtn" id="xClose" type="button" aria-label="Close">×</button>
+      </div>
+
+      <div class="modalBody">
+        <!-- Script injects rotating messages here -->
+        <p id="messageText"></p>
+      </div>
+
+      <div class="modalBottom">
+        <!-- MUST match script.js: id="okClose" -->
+        <button class="btn" id="okClose" type="button">Okay</button>
+      </div>
     </div>
   </div>
 
+  <!-- IMPORTANT: your file is named script.js -->
   <script src="script.js"></script>
 </body>
 </html>
