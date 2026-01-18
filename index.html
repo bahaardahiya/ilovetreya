@@ -1,52 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>ilovetreya</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Anniversary Bhondz</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-    <!-- Soft, modern font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<body>
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <!-- Floating flowers background -->
+  <div class="flowers" aria-hidden="true">
+    <span>✿</span><span>❀</span><span>✿</span><span>❀</span>
+    <span>✿</span><span>❀</span><span>✿</span><span>❀</span>
+    <span>✿</span><span>❀</span><span>✿</span><span>❀</span>
+  </div>
 
-  <body>
-    <!-- subtle floating petals/hearts -->
-    <div class="floaters" aria-hidden="true"></div>
+  <main class="container">
 
-          <h1 class="headline">
-            Happy Anniversary,<br />
-            <span class="accent">Bhondz</span>
-          </h1>
+    <h1>Happy Anniversary Bhondz</h1>
 
-          <p class="subcopy">
-            Just a small corner of the internet to remind you you’re loved (especially when I’m asleep).
-            I love you so much, bhondz.
-          </p>
+    <!-- Lil message -->
+    <section class="card small">
+      <h2>Click for a lil message</h2>
+      <button id="openMessage">Click</button>
+    </section>
 
-          <div class="cta-row">
-            <button id="btn" class="btn" type="button">Tap for a little message</button>
-            <span id="surprise" class="surprise" role="status" aria-live="polite"></span>
-          </div>
+    <!-- Digital garden -->
+    <section class="card">
+      <h2>Our Digital Garden</h2>
+      <div class="garden">
+        <div class="seed">
+          <h3>Seed #1</h3>
+          <p>Things I love about you: your laugh that catches me off-guard, your calm, and the way you make “ordinary” feel safe.</p>
         </div>
-
-
-        <div class="garden-wrap">
-          <div class="garden-title">Grow me a garden</div>
-          <div class="garden-sub">Click anywhere in the box to bloom flowers.</div>
-          <div class="garden" id="garden" aria-label="Click to grow flowers"></div>
+        <div class="seed">
+          <h3>Seed #2</h3>
+          <p>Our first date energy: slightly nervous, slightly chaotic, massively iconic. I’d do it all again.</p>
         </div>
+        <div class="seed">
+          <h3>Seed #3</h3>
+          <p>Promise: even when we’re far, I’m still choosing you—daily, deliberately, happily.</p>
+        </div>
+      </div>
+    </section>
 
-        <footer class="footer">
-          yours,
-          bhondu
-        </footer>
-      </section>
-    </main>
+    <!-- Google Map -->
+    <section class="card">
+      <h2>Where it started</h2>
+      <div class="map-wrapper">
+        <!-- Replace ONLY the src with your pub's Google Maps embed link -->
+        <iframe
+          src="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2909.91471004512!2d-0.14209802296133214!3d51.510881971814186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760557da56fd43%3A0x82513a207b651ff6!2sThe%20Starman!5e1!3m2!1sen!2suk!4v1768744891160!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
-  </body>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="messageModal">
+    <div class="modal-backdrop" id="closeMessage"></div>
+    <div class="modal-box">
+      <button class="close" id="xClose">×</button>
+      <p>
+        Happy anniversary!
+        You’re my favourite person :)
+      </p>
+      <button id="okClose">Okay</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
