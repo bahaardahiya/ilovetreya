@@ -7,6 +7,8 @@ const messages = [
 ];
 
 let msgIndex = 0;
+const messageTextEl = document.getElementById("messageText");
+
 
 // DOM hooks (match your current IDs)
 const modal = document.getElementById("messageModal");
@@ -18,7 +20,6 @@ const closeOk = document.getElementById("okClose");
 // Where the message should render inside the modal.
 // IMPORTANT: In your index.html modal, add an element with id="messageText"
 // (example: <p id="messageText"></p>)
-const messageTextEl = document.getElementById("messageText");
 
 // Safety: if the element doesn't exist, fail gracefully
 function setMessage(text) {
